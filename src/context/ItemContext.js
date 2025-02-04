@@ -30,7 +30,7 @@ export const ItemProvider = ({ children }) => {
     setLoading(true); 
 
     try {
-      const saveItem = await axiosInstance.post(`/item/create`, { name, description });
+      const saveItem = await axiosInstance.post(`/items/`, { name, description });
 
       if (saveItem.data.success) {
         setItems((prevItems) => [saveItem.data.data, ...prevItems]); 
@@ -49,7 +49,7 @@ export const ItemProvider = ({ children }) => {
   const getItem = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get(`/item/getAll`);
+      const response = await axiosInstance.get(`/items/`);
       setItems(response?.data?.data || []);
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -62,7 +62,7 @@ export const ItemProvider = ({ children }) => {
   const deleteItem = async (id) => {
     setDeleting(true); 
     try {
-      const del_response = await axiosInstance.delete(`/item/delete/${id}`);
+      const del_response = await axiosInstance.delete(`/items/${id}`);
 
       if (del_response.data.success) {
         setItems((prevItems) => prevItems.filter((item) => item._id !== id)); 
@@ -80,7 +80,7 @@ export const ItemProvider = ({ children }) => {
     setLoading(true); 
     try {
       // Make sure to send the updated data in the request body
-      const update_response = await axiosInstance.put(`/item/update/${id}`, updatedItem);
+      const update_response = await axiosInstance.put(`/items/${id}`, updatedItem);
   
       if (update_response.data.success) {
         // Update the item in the state
