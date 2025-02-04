@@ -60,7 +60,7 @@ export const ItemProvider = ({ children }) => {
 
   // Delete item
   const deleteItem = async (id) => {
-    setDeleting(true); 
+    setDeleting(id); 
     try {
       const del_response = await axiosInstance.delete(`/items/${id}`);
 
@@ -72,7 +72,7 @@ export const ItemProvider = ({ children }) => {
       toast.error("Please try again");
       console.error("Error deleting item:", error);
     } finally {
-      setDeleting(false); 
+      setDeleting(''); 
     }
   };
   //Update item

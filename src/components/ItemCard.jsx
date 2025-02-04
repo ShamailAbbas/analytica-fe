@@ -24,8 +24,8 @@ const ItemCard = ({ item, onClick }) => {
           <Typography color="textSecondary" textAlign={'justify'} mt={2}>{truncatedDescription}</Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "space-between" }}>
-          <Button color="error" onClick={() => deleteItem(item._id)} disabled={deleting}>
-              {deleting ? (<CircularProgress color="error"  />) :<Delete/>}
+          <Button color="error" onClick={() => deleteItem(item._id)} disabled={deleting==item._id}>
+              {deleting==item._id ? (<CircularProgress color="error"  />) :<Delete/>}
           </Button>
           <Button variant="outlined" onClick={onClick}>
             View Details

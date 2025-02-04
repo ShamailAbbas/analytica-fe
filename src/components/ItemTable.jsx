@@ -17,6 +17,7 @@ import { Delete } from "@mui/icons-material";
 
 export default function ItemTable({ items, setSelectedItem}) {
       const { deleteItem,deleting } = useItemContext();
+     
     
 
   return (
@@ -43,9 +44,9 @@ export default function ItemTable({ items, setSelectedItem}) {
                   color="error"
                   sx={{ ml: 2 }}
                   onClick={() => deleteItem(item._id)} // Delete button
-                  disabled={deleting}
+                  disabled={deleting==item._id}
                 >
-                   {deleting ? (
+                   {deleting==item._id ? (
                             <CircularProgress color="error"  />
                           ) :<Delete/>}
                 </Button>
